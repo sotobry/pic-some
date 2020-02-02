@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const { Provider, Consumer } = React.createContext();
-const ContextProvider = (props) => {
+const PhotosContextProvider = (props) => {
 	const [photos, setPhotos] = useState([]);
-
 	useEffect(() => {
 		fetch('https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json')
 			.then(response => response.json())
@@ -14,4 +13,4 @@ const ContextProvider = (props) => {
 	);
 };
 
-export { ContextProvider, Consumer as ContextConsumer };
+export { PhotosContextProvider, Consumer as PhotosContextConsumer };

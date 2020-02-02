@@ -1,15 +1,15 @@
 import React from 'react';
 import { Image } from '../components/Image';
-import { ContextConsumer } from '../contexts/Context';
+import { PhotosContextConsumer } from '../contexts/PhotosContext';
 import { getClass } from '../utils/index';
 const Photos = () => {
 
 	return (
 		<main className='photos'>
-			<ContextConsumer>{
+			<PhotosContextConsumer>{
 				({ photos }) => photos.map((photo, i) => <Image key={photo.id} img={photo} className={getClass(i)} />)
 			}
-			</ContextConsumer>
+			</PhotosContextConsumer>
 		</main>
 	);
 };

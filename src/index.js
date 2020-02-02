@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ContextProvider } from './contexts/Context';
+import { PhotosContextProvider } from './contexts/PhotosContext';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
-	<ContextProvider>
+	<PhotosContextProvider>
 		<Router>
 			<App />
 		</Router>
-	</ContextProvider>,
+	</PhotosContextProvider>,
 	document.getElementById('root'));
