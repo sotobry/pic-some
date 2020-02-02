@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { PhotosContextConsumer } from '../contexts/PhotosContext';
 
 const Image = ({ className, img }) => {
 	const [hovered, setHovered] = useState(false);
-	console.log(img.id, { hovered });
 
-	const heartIcon = hovered && <i className="ri-heart-line favorite"></i>;
+	const heartIcon = hovered &&
+		<PhotosContextConsumer>
+			{({ toggleFavorite }) =>
+				<i className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i>
+			}
+
+		</PhotosContextConsumer>
+
 	const cartIcon = hovered && <i className="ri-add-circle-line cart"></i>;
 
 	return (
