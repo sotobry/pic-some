@@ -9,7 +9,6 @@ const ContextProvider = (props) => {
 			.then(response => response.json())
 			.then(data => setPhotos(data));
 	}, []);
-	console.log(photos);
 	return (
 		<Provider value={{ photos }}>{props.children}</Provider>
 	);
