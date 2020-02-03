@@ -16,6 +16,9 @@ const PhotosContextProvider = (props) => {
 	const addImgToCart = (imgObj) => {
 		setCartItems(prevCart => [...prevCart, imgObj]);
 	};
+	const removeImgFromCart = (imgObj) => {
+		setCartItems(prevCart => prevCart.filter(img => imgObj.id !== img.id));
+	};
 	console.log(cartItems);
 
 	useEffect(() => {
@@ -25,7 +28,7 @@ const PhotosContextProvider = (props) => {
 	}, []);
 
 	return (
-		<Provider value={{ photos, toggleFavorite, addImgToCart, cartItems }}>
+		<Provider value={{ photos, toggleFavorite, addImgToCart, cartItems, removeImgFromCart }}>
 			{props.children}
 		</Provider>
 	);

@@ -11,7 +11,7 @@ const Image = ({ className, img }) => {
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)} >
 			<PhotosContextConsumer>{
-				({ toggleFavorite, addImgToCart, cartItems }) => {
+				({ toggleFavorite, addImgToCart, cartItems, removeImgFromCart }) => {
 
 					const cartHasImg = cartItems.some(item => img.id === item.id);
 
@@ -22,17 +22,26 @@ const Image = ({ className, img }) => {
 						}
 						onClick={() => toggleFavorite(img.id)}></i>;
 
-					const cartIcon = <i
-						className={`cart ${
-							cartHasImg ? 'ri-shopping-cart-fill' :
-								hovered ? 'ri-add-circle-line' : null}`
-						}
-						onClick={() => addImgToCart(img)}></i>
+					const cartIcon = () => {
 
+						let iconType = '';
+						let onClick = null;
+
+						if (cartHasImg) {
+							iconType = 'ri-shopping-cart-fill';
+							onClick = () => removeImgFromCart(img);
+						}
+						else if (hovered) {
+							iconType = 'ri-add-circle-line';
+							onClick = () => addImgToCart(img);
+						}
+
+						return <i className={`cart ${iconType}`} onClick={onClick}></i>;
+					}
 					return (
 						<>
 							{heartIcon}
-							{cartIcon}
+							{cartIcon()}
 						</>
 					);
 				}
