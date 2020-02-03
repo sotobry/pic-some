@@ -20,14 +20,18 @@ const Cart = () => {
 						emptyCart();
 					}, 3000);
 				}
+				const cartHasItems = cartItems.length > 0;
 				return (
 					<main className='cart-page'>
 						<h1>Check out</h1>
 						{cartItemElements}
 						<p className='total-cost'>Total: {total}</p>
-						<div className='order-button'>
-							<button onClick={placeOrder}>{buttonText}</button>
-						</div>
+						{cartHasItems ?
+							<div className='order-button'>
+								<button onClick={placeOrder}>{buttonText}</button>
+							</div> :
+							<p>You have no items in your cart.</p>
+						}
 					</main>
 				);
 			}
