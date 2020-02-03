@@ -19,7 +19,7 @@ const PhotosContextProvider = (props) => {
 	const removeImgFromCart = (imgObj) => {
 		setCartItems(prevCart => prevCart.filter(img => imgObj.id !== img.id));
 	};
-	console.log(cartItems);
+	// console.log(cartItems);
 
 	useEffect(() => {
 		fetch('https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json')
