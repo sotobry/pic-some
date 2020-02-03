@@ -11,26 +11,35 @@ const Image = ({ className, img }) => {
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)} >
 			<PhotosContextConsumer>{
-				({ toggleFavorite, addImgToCart }) => {
-					const cartIcon = hovered && <i className="ri-add-circle-line cart" onClick={() => addImgToCart(img)}></i>;
+				({ toggleFavorite, addImgToCart, cartItems }) => {
+
+					const cartHasImg = cartItems.some(item => img.id === item.id);
+
+					const heartIcon = <i
+						className={`favorite ${
+							img.isFavorite ? 'ri-heart-fill' :
+								hovered ? 'ri-heart-line' : null}`
+						}
+						onClick={() => toggleFavorite(img.id)}></i>;
+
+					const cartIcon = <i
+						className={`cart ${
+							cartHasImg ? 'ri-shopping-cart-fill' :
+								hovered ? 'ri-add-circle-line' : null}`
+						}
+						onClick={() => addImgToCart(img)}></i>
+
 					return (
 						<>
-							<i
-								className={`favorite ${
-									img.isFavorite ? 'ri-heart-fill' :
-										hovered ? 'ri-heart-line' : null}`
-								}
-								onClick={() => toggleFavorite(img.id)}></i>
+							{heartIcon}
 							{cartIcon}
 						</>
 					);
 				}
 			}
 			</PhotosContextConsumer>
-			{/* {heartIcon} */}
-			{/* {cartIcon} */}
 			<img className='image-grid' src={img.url} alt='' />
-		</div>
+		</div >
 	);
 };
 

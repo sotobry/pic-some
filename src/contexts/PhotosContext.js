@@ -25,7 +25,7 @@ const PhotosContextProvider = (props) => {
 	}, []);
 
 	return (
-		<Provider value={{ photos, toggleFavorite, addImgToCart }}>
+		<Provider value={{ photos, toggleFavorite, addImgToCart, cartItems }}>
 			{props.children}
 		</Provider>
 	);
