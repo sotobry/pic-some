@@ -6,27 +6,29 @@ import { PhotosContextConsumer } from '../contexts/PhotosContext';
 const Image = ({ className, img }) => {
 	const [hovered, setHovered] = useState(false);
 
-	const heartIcon =
-		<PhotosContextConsumer>{
-			({ toggleFavorite }) =>
-				<i
-					className={`favorite ${
-						img.isFavorite ? 'ri-heart-fill' :
-							hovered ? 'ri-heart-line' : null}`
-					}
-					onClick={() => toggleFavorite(img.id)}></i>
-		}
-		</PhotosContextConsumer>
-
-
-	const cartIcon = hovered && <i className="ri-add-circle-line cart"></i>;
-
 	return (
 		<div className={`${className} image-container ${hovered ? 'hovered' : null}`}
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)} >
-			{heartIcon}
-			{cartIcon}
+			<PhotosContextConsumer>{
+				({ toggleFavorite, addImgToCart }) => {
+					const cartIcon = hovered && <i className="ri-add-circle-line cart" onClick={() => addImgToCart(img)}></i>;
+					return (
+						<>
+							<i
+								className={`favorite ${
+									img.isFavorite ? 'ri-heart-fill' :
+										hovered ? 'ri-heart-line' : null}`
+								}
+								onClick={() => toggleFavorite(img.id)}></i>
+							{cartIcon}
+						</>
+					);
+				}
+			}
+			</PhotosContextConsumer>
+			{/* {heartIcon} */}
+			{/* {cartIcon} */}
 			<img className='image-grid' src={img.url} alt='' />
 		</div>
 	);
