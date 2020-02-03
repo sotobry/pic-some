@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { PhotosContextConsumer } from '../contexts/PhotosContext';
+import { useHover } from '../hooks/useHover';
+
 
 
 const Image = ({ className, img }) => {
-	const [hovered, setHovered] = useState(false);
-
+	const { hovered, ref } = useHover();
 	return (
 		<div className={`${className} image-container ${hovered ? 'hovered' : null}`}
-			onMouseEnter={() => setHovered(true)}
-			onMouseLeave={() => setHovered(false)} >
+			ref={ref}>
 			<PhotosContextConsumer>{
 				({ toggleFavorite, addImgToCart, cartItems, removeImgFromCart }) => {
 
