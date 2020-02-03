@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { PhotosContextConsumer } from '../contexts/PhotosContext';
+
 
 const Image = ({ className, img }) => {
 	const [hovered, setHovered] = useState(false);
-
-
-	/*
-				favorite 								show filled heart
-				!favorite && hovered		show empty heart
-				!favorite && !hovered		don't show anything
-	*/
-	// const heartIcon = null;
-	// if (img.isFavorite) heartIcon = 
-	// <i className={`ri-heart-fill favorite`} onClick={() => toggleFavorite(img.id)}></i>
-	// else if (hovered) <i className={`ri-heart-line favorite`} onClick={() => toggleFavorite(img.id)}></i>
-
 
 	const heartIcon =
 		<PhotosContextConsumer>{
@@ -42,4 +32,13 @@ const Image = ({ className, img }) => {
 	);
 };
 
+
+Image.propTypes = {
+	className: PropTypes.string,
+	img: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		url: PropTypes.string.isRequired,
+		isFavorite: PropTypes.bool.isRequired
+	})
+}
 export { Image };
