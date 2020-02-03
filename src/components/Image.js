@@ -25,18 +25,18 @@ const Image = ({ className, img }) => {
 					const cartIcon = () => {
 
 						let iconType = '';
-						let onClick = null;
+						let handleClick = null;
 
 						if (cartHasImg) {
 							iconType = 'ri-shopping-cart-fill';
-							onClick = () => removeImgFromCart(img);
+							handleClick = () => removeImgFromCart(img);
 						}
 						else if (hovered) {
 							iconType = 'ri-add-circle-line';
-							onClick = () => addImgToCart(img);
+							handleClick = () => addImgToCart(img);
 						}
 
-						return <i className={`cart ${iconType}`} onClick={onClick}></i>;
+						return <i className={`cart ${iconType}`} onClick={handleClick}></i>;
 					}
 					return (
 						<>
